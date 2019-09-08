@@ -35,10 +35,10 @@ public class Main {
         
         System.out.println(solution.getCost());
         
-        solver.translateMoves(solution, paths);
+        Node.translateMoves(solution, paths);
         
-        for (String path: paths) {
+        paths.forEach((path) -> {
             System.out.println(path);
-        }
+        });
     }
 }

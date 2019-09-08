@@ -5,6 +5,8 @@
  */
 package solver;
 
+import java.util.InputMismatchException;
+
 /**
  *
  * @author Namchee
@@ -14,7 +16,7 @@ public class SolverFactory {
         if (args.equals("bfs")) {
             return new BFSSolver();
         } else {
-            return new BFSSolver();
+            throw new InputMismatchException("Hmm... saya tidak mengerti algoritma ini");
         }
     }
 }

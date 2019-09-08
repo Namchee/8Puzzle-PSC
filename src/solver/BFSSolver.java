@@ -19,13 +19,13 @@ import state.State;
 public class BFSSolver extends Solver {
     @Override
     public Node solve(int[] initialPuzzle) {
-        HashSet<List<Integer> > repeatingNodes = new HashSet();
+        HashSet<Node> repeatingNodes = new HashSet();
         Queue<Node> queue = new LinkedList();
         
         State initalState = new State(initialPuzzle);
         Node initialNode = new Node(initalState, 0, 0);
         
-        repeatingNodes.add(this.generatePuzzleSet(initialPuzzle));
+        repeatingNodes.add(initialNode);
         queue.add(initialNode);
         
         Node goal = null;
@@ -38,10 +38,13 @@ public class BFSSolver extends Solver {
                 goal = currentNode;
                 break;
             } else {
-                List<Node> nextNodes = this.getSuccessorNodes(currentNode, repeatingNodes);
+                List<Node> nextNodes = currentNode.getSuccessorNodes(MOVES);
                 
-                for (Node next: nextNodes) {
-                    queue.add(next);
+                for (Node nextNode: nextNodes) {
+                    if (!repeatingNodes.contains(nextNode)) {
+                        repeatingNodes.add(nextNode);
+                        queue.add(nextNode);
+                    }
                 }
             }
         }
