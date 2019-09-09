@@ -33,6 +33,7 @@ public class BFSSolver extends Solver {
         while (!queue.isEmpty()) {
             Node currentNode = queue.poll();
             State currentState = currentNode.getState();
+            this.expand++;
             
             if (currentState.isGoalState()) {
                 goal = currentNode;

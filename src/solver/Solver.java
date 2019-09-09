@@ -12,6 +12,15 @@ import state.Node;
  */
 public abstract class Solver {
     protected static final int[] MOVES = { -1, 1, -3, 3 };
+    protected int expand;
+    
+    public Solver() {
+        this.expand = 0;
+    }
     
     public abstract Node solve(int[] puzzle);
+    
+    public int getExpandedNodes() {
+        return this.expand;
+    }
 }

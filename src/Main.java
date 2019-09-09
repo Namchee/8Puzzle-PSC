@@ -29,16 +29,26 @@ public class Main {
         
         Solver solver = SolverFactory.createSolver(argument);
         
+        long start = System.currentTimeMillis();
+        
         Node solution = solver.solve(puzzle);
+        
+        long end = System.currentTimeMillis();
         
         List<String> paths = new ArrayList();
         
-        System.out.println(solution.getCost());
+        System.out.println("Solvable in: " + solution.getCost() + " moves.");
+        
+        System.out.println("Expanded nodes: " + solver.getExpandedNodes() + " nodes.");
+        
+        System.out.println("Moves used:");
         
         Node.translateMoves(solution, paths);
         
         paths.forEach((path) -> {
             System.out.println(path);
         });
+        
+        System.out.println("Solved in: " + (end - start) + " millis.");
     }
 }
