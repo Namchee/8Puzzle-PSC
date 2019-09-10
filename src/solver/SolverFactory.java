@@ -15,7 +15,10 @@ public class SolverFactory {
     public static Solver createSolver(String args) {
         if (args.equals("bfs")) {
             return new BFSSolver();
-        } else {
+        } else if(args.equals("a*")){
+            return new AStarSolver();
+        } 
+        else {
             throw new InputMismatchException("Hmm... saya tidak mengerti algoritma ini");
         }
     }
