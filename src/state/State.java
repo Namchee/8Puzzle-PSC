@@ -26,6 +26,13 @@ public class State {
         return this.puzzle;
     }
     
+    public void print(){
+        for (int i = 0; i < this.puzzle.length; i++) {
+            System.out.print(this.puzzle[i]+" ");
+        }
+        System.out.println("");
+    }
+    
     public boolean isGoalState() {
         for (int i = 0; i < 9; i++) {
             if (this.puzzle[i] != State.GOAL_STATE[i]) {

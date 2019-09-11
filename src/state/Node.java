@@ -52,7 +52,6 @@ public class Node implements Comparable<Node> {
         for (int i = 0, sz = moves.length; i < sz; i++) {
             try {
                 int[] newPuzzle = currentState.getSuccessor(moves[i]);
-                
                 State newState = new State(newPuzzle);
                 Node newNode = new Node(newState, this.getCost() + 1, moves[i]);
                 
@@ -90,8 +89,8 @@ public class Node implements Comparable<Node> {
     
     @Override
     public int compareTo(Node other) {
-        int currentCost = this.cost + this.currentState.getHeuristic();
-        int otherCost = other.getCost() + other.getState().getHeuristic();
+        int currentCost = this.cost + this.currentState.getManhattanDistance();
+        int otherCost = other.getCost() + other.getState().getManhattanDistance(); 
         
         return currentCost - otherCost;
     }

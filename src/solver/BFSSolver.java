@@ -43,6 +43,7 @@ public class BFSSolver extends Solver {
                 
                 for (Node nextNode: nextNodes) {
                     if (!repeatingNodes.contains(nextNode)) {
+                        //nextNode.getState().print();
                         repeatingNodes.add(nextNode);
                         queue.add(nextNode);
                     }
