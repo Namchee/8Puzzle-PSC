@@ -48,10 +48,12 @@ public class State {
         
         try {
             int blankIdx = this.getBlank();
-            
-            copy[blankIdx] += copy[blankIdx + swap];
-            copy[blankIdx + swap] = copy[blankIdx] - copy[blankIdx + swap];
-            copy[blankIdx] -= copy[blankIdx + swap];
+            if((swap==1 && (blankIdx+1)%3==0) || (swap==-1 && blankIdx%3==0)){
+                return copy;
+            }
+                copy[blankIdx] += copy[blankIdx + swap];
+                copy[blankIdx + swap] = copy[blankIdx] - copy[blankIdx + swap];
+                copy[blankIdx] -= copy[blankIdx + swap];
             
             return copy;
         } catch (IndexOutOfBoundsException err) {
