@@ -19,6 +19,7 @@ public class State {
     
     public State(int[] puzzle) {
         this.isValidState(puzzle);
+        this.isSolvable(puzzle);
         this.puzzle = puzzle;
     }
     
@@ -48,7 +49,7 @@ public class State {
         
         try {
             int blankIdx = this.getBlank();
-            if((swap==1 && (blankIdx+1)%3==0) || (swap==-1 && blankIdx%3==0)){
+            if ((swap == 1 && (blankIdx + 1) % 3 == 0) || (swap == -1 && blankIdx % 3 == 0)) {
                 return copy;
             }
                 copy[blankIdx] += copy[blankIdx + swap];
@@ -110,6 +111,19 @@ public class State {
             if (frequency[i] != 1) {
                 throw new InputMismatchException("Illegal puzzle");
             }
+        }
+    }
+    
+    private void isSolvable(int[] arr) {
+        int inv_count = 0; 
+        for (int i = 0; i < 9 - 1; i++) 
+            for (int j = i+1; j < 9; j++) 
+                 // Value 0 is used for empty space 
+                if (arr[j] > 0 && arr[i] > 0 &&  arr[i] > arr[j]) 
+                    inv_count++; 
+        
+        if (inv_count % 2 != 0) {
+            throw new InputMismatchException("Unsolvable puzzle");
         }
     }
     
