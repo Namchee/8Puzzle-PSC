@@ -26,6 +26,13 @@ public class State {
         return this.puzzle;
     }
     
+    public void print(){
+        for (int i = 0; i < this.puzzle.length; i++) {
+            System.out.print(this.puzzle[i]+" ");
+        }
+        System.out.println("");
+    }
+    
     public boolean isGoalState() {
         for (int i = 0; i < 9; i++) {
             if (this.puzzle[i] != State.GOAL_STATE[i]) {
@@ -41,10 +48,12 @@ public class State {
         
         try {
             int blankIdx = this.getBlank();
-            
-            copy[blankIdx] += copy[blankIdx + swap];
-            copy[blankIdx + swap] = copy[blankIdx] - copy[blankIdx + swap];
-            copy[blankIdx] -= copy[blankIdx + swap];
+            if((swap==1 && (blankIdx+1)%3==0) || (swap==-1 && blankIdx%3==0)){
+                return copy;
+            }
+                copy[blankIdx] += copy[blankIdx + swap];
+                copy[blankIdx + swap] = copy[blankIdx] - copy[blankIdx + swap];
+                copy[blankIdx] -= copy[blankIdx + swap];
             
             return copy;
         } catch (IndexOutOfBoundsException err) {
